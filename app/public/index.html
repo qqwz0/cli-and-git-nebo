@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Todo App</title>
+    <style>
+      body {
+        font-family: system-ui, sans-serif;
+        max-width: 480px;
+        margin: 40px auto;
+        padding: 0 16px;
+      }
+      h1 {
+        font-size: 1.4rem;
+      }
+      ul {
+        padding-left: 1.2rem;
+      }
+      li {
+        margin: 6px 0;
+      }
+      .done {
+        text-decoration: line-through;
+        color: #888;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Todo App</h1>
+    <p>A minimal web app for the NEBo CLI and Git tasks.</p>
+    <ul id="list">
+      <li>Loading…</li>
+    </ul>
+
+    <script>
+      async function load() {
+        const res = await fetch("/api/health");
+        const data = await res.json();
+        const list = document.getElementById("list");
+        list.innerHTML =
+          "<li>Service: " + data.service + " (" + data.status + ")</li>";
+      }
+      load();
+    </script>
+  </body>
+</html>

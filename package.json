@@ -1,0 +1,16 @@
+{
+  "name": "cli-and-git-nebo",
+  "version": "1.0.0",
+  "description": "A single small web app used as the shared subject for two NEBo tasks:",
+  "main": "app/server.js",
+  "scripts": {
+    "start": "node app/server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^5.2.1"
+  }
+}
