@@ -1,0 +1,5 @@
+[
+  { "id": 1, "title": "Set up project environment", "done": true },
+  { "id": 2, "title": "Write CLI scripts for Windows and Linux", "done": false },
+  { "id": 3, "title": "Practice git branching and merging", "done": false }
+]
