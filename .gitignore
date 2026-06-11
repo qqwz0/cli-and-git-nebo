@@ -1,6 +1,9 @@
 # Dependencies
 node_modules/
 
+# Build / runtime scratch
+build/
+
 # Logs
 *.log
 npm-debug.log*
