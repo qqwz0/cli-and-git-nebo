@@ -13,12 +13,29 @@ function readTodos() {
   return JSON.parse(fs.readFileSync(DATA_FILE, "utf-8"));
 }
 
+function writeTodos(todos) {
+  fs.writeFileSync(DATA_FILE, JSON.stringify(todos, null, 2) + "\n");
+}
+
 app.get("/api/health", (req, res) => {
   res.json({ status: "ok", service: "todos" });
 });
 
 app.get("/api/todos", (req, res) => {
   res.json(readTodos());
+});
+
+app.post("/api/todos", (req, res) => {
+  const { title } = req.body;
+  if (!title) {
+    return res.status(400).json({ error: "title is required" });
+  }
+  const todos = readTodos();
+  const nextId = todos.length ? Math.max(...todos.map((t) => t.id)) + 1 : 1;
+  const todo = { id: nextId, title, done: false };
+  todos.push(todo);
+  writeTodos(todos);
+  res.status(201).json(todo);
 });
 
 app.listen(PORT, () => {
