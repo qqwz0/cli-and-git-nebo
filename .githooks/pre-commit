@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+# pre-commit hook - blocks a commit if any staged file contains a leftover marker.
+# Enabled with:  git config core.hooksPath .githooks
+# Keeping the hook in a tracked folder means it travels with the repository.
+
+marker="DONOTCOMMIT"
+
+# Only scan files that are staged for this commit (excluding this hook itself).
+staged=$(git diff --cached --name-only --diff-filter=ACM | grep -v '^.githooks/pre-commit$')
+
+if [ -z "$staged" ]; then
+  exit 0
+fi
+
+if echo "$staged" | xargs grep -nH "$marker" 2>/dev/null; then
+  echo
+  echo "pre-commit: found '$marker' in staged files (shown above). Commit aborted." >&2
+  exit 1
+fi
+
+exit 0
