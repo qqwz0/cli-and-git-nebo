@@ -5,8 +5,11 @@
 
 marker="DONOTCOMMIT"
 
-# Only scan files that are staged for this commit (excluding this hook itself).
-staged=$(git diff --cached --name-only --diff-filter=ACM | grep -v '^.githooks/pre-commit$')
+# Only scan files staged for this commit. The hook itself and the docs/ folder are
+# excluded, since both legitimately mention the marker by name.
+staged=$(git diff --cached --name-only --diff-filter=ACM \
+  | grep -v '^.githooks/pre-commit$' \
+  | grep -v '^docs/')
 
 if [ -z "$staged" ]; then
   exit 0
