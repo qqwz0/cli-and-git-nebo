@@ -1,7 +1,5 @@
 # CLI & Git NEBo Tasks
 
-TODO TODO TODO this line is broken and should not be here !!!!!
-
 A single small web app used as the shared subject for two NEBo tasks:
 
 1. **Manage environments using built-in OS tools** (CLI / environment task)
